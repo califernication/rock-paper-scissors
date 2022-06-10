@@ -43,10 +43,9 @@ function playRound(PlayerSelection, ComputerSelection) {
 
 }
 
-
 function getUserInput() {
     var out = "";
-    while (out.toUpperCase() !== "ROCK" || out.toUpperCase() !== "PAPER" || out.toUpperCase() !== "SCISSORS"){
+    while (!(out.toUpperCase() === "ROCK" || out.toUpperCase() === "PAPER" || out.toUpperCase() === "SCISSORS")) {
         out = prompt("Which weapon are you going to use?");
         console.log(out);
     }
@@ -54,9 +53,18 @@ function getUserInput() {
 }
 
 function game() {
+    var winCount = 0;
+    var loseCount = 0;
+
     for(let i = 0; i < 5; i++){
-        console.log(playRound(getUserInput(), computerPlay()));
+        result = playRound(getUserInput(), computerPlay());
+        console.log(result);
+        if (result.includes("win")) winCount++;
+        else if (result.includes("lose")) loseCount++;
     }
+    if (winCount > loseCount) alert("YOU WON THE GAME");
+    else if (loseCount > winCount) alert("YOU LOST THE GAME");
+    else alert("THE GAME IS A TIE");
 }
 
 game()
