@@ -43,6 +43,20 @@ function playRound(PlayerSelection, ComputerSelection) {
 
 }
 
-// const playerSelection = "rock";
-// const computerSelection = computerPlay();
-// console.log(playRound(playerSelection, computerSelection));
+
+function getUserInput() {
+    var out = "";
+    while (out.toUpperCase() !== "ROCK" || out.toUpperCase() !== "PAPER" || out.toUpperCase() !== "SCISSORS"){
+        out = prompt("Which weapon are you going to use?");
+        console.log(out);
+    }
+    return out;
+}
+
+function game() {
+    for(let i = 0; i < 5; i++){
+        console.log(playRound(getUserInput(), computerPlay()));
+    }
+}
+
+game()
