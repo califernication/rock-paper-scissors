@@ -1,3 +1,10 @@
+function reset() {
+    const userScore = document.querySelector("#user-score");
+    userScore.textContent = 0
+    const computerScore = document.querySelector("#computer-score");
+    computerScore.textContent = 0
+}
+
 function computerPlay() {
     let i = Math.floor(Math.random() * 3);
     const lst = ["Rock", "Paper", "Scissors"];
@@ -44,6 +51,10 @@ function playRound(PlayerSelection, ComputerSelection) {
 }
 
 function game(userWeapon, userWins, computerWins) {
+
+    var node= document.getElementById("message");
+    node.querySelectorAll('*').forEach(n => n.remove());
+
     result = playRound(userWeapon, computerPlay());
     console.log(result);
     if (result.includes("win")) {
@@ -53,7 +64,8 @@ function game(userWeapon, userWins, computerWins) {
         if (userWins == 5){
             const winMessage = document.createElement('div');
             winMessage.textContent = "YOU WON!!";
-            document.body.appendChild(winMessage);
+            document.getElementById("message").appendChild(winMessage);
+            reset();
         }
     }
     else if (result.includes("lose")) {
@@ -63,7 +75,8 @@ function game(userWeapon, userWins, computerWins) {
         if (computerWins == 5){
             const loseMesage = document.createElement('div');
             loseMesage.textContent = "YOU LOST :(";
-            document.body.appendChild(loseMesage);
+            document.getElementById("message").appendChild(loseMesage);
+            reset();
         }
     }
 }
