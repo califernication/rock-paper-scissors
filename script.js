@@ -43,28 +43,38 @@ function playRound(PlayerSelection, ComputerSelection) {
 
 }
 
-function getUserInput() {
-    var out = "";
-    while (!(out.toUpperCase() === "ROCK" || out.toUpperCase() === "PAPER" || out.toUpperCase() === "SCISSORS")) {
-        out = prompt("Which weapon are you going to use?");
-        console.log(out);
+function game(userWeapon, userWins, computerWins) {
+    result = playRound(userWeapon, computerPlay());
+    console.log(result);
+    if (result.includes("win")) {
+        const userScore = document.querySelector("#user-score");
+        userWins = Number(userScore.textContent) + 1;
+        userScore.textContent = userWins;
+        if (userWins == 5){
+            const winMessage = document.createElement('div');
+            winMessage.textContent = "YOU WON!!";
+            document.body.appendChild(winMessage);
+        }
     }
-    return out;
+    else if (result.includes("lose")) {
+        const computerScore = document.querySelector("#computer-score");
+        computerWins = Number(computerScore.textContent) + 1;
+        computerScore.textContent = computerWins;
+        if (computerWins == 5){
+            const loseMesage = document.createElement('div');
+            loseMesage.textContent = "YOU LOST :(";
+            document.body.appendChild(loseMesage);
+        }
+    }
 }
 
-function game() {
-    var winCount = 0;
-    var loseCount = 0;
+// Main Loop
 
-    for(let i = 0; i < 5; i++){
-        result = playRound(getUserInput(), computerPlay());
-        console.log(result);
-        if (result.includes("win")) winCount++;
-        else if (result.includes("lose")) loseCount++;
-    }
-    if (winCount > loseCount) alert("YOU WON THE GAME");
-    else if (loseCount > winCount) alert("YOU LOST THE GAME");
-    else alert("THE GAME IS A TIE");
+var userWins = 0;
+var computerWins = 0;
+
+const btns = document.querySelectorAll('button');
+for (i = 0; i < btns.length; i++) {
+    let id = btns[i].id;
+    btns[i].addEventListener('click', () => game(id, userWins, computerWins));
 }
-
-game()
