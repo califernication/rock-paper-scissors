@@ -52,9 +52,11 @@ button {
 
 }
 
-.result.div {
+.results > div {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
 }
 
@@ -72,10 +74,6 @@ button {
     font-size: 50px;
     color: #145DA0;
     font-weight: bolder;
-}
-
-#message > {
-    
 }
 
 .footer {
